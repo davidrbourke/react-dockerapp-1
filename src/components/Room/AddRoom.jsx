@@ -41,13 +41,13 @@ class AddRoom extends Component {
           <div className='row'>
             <div className='input-field'>
               <input id='name' type='text' name='name' onChange={this.handleChange} value={this.state.room.name} />
-              <label for='name'>Room name</label>
+              <label htmlFor='name'>Room name</label>
             </div>
           </div>
           <div className='row'>
             <div className='input-field'>
               <input id='size' type='text' name='size' onChange={this.handleChange} value={this.state.room.size} />
-              <label for='size'>Room capacity</label>
+              <label htmlFor='size'>Room capacity</label>
             </div>
           </div>
           <input type='submit' value='Add' className='btn' />
@@ -57,7 +57,9 @@ class AddRoom extends Component {
   }
 }
 
-function mapStateToProps (state) {}
+function mapStateToProps (state) {
+  return {}
+}
 
 function mapDispatchToProps (dispatch) {
   return {

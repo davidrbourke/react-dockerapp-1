@@ -16,7 +16,7 @@ class Rooms extends Component {
 
   render () {
     return (
-      <div className='container'>
+      <div>
         <h2>Rooms</h2>
         <RoomList rooms={this.props.rooms} />
         <AddRoom />
