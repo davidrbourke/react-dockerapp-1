@@ -21,3 +21,12 @@ export function loadRooms () {
       })
   }
 }
+
+export function addRoom (room) {
+  return function (dispatch) {
+    return roomApi.addRoom(room)
+      .catch(error => {
+        throw error
+      })
+  }
+}

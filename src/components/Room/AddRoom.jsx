@@ -21,8 +21,11 @@ class AddRoom extends Component {
   }
 
   handleSubmit = (event) => {
-    this.props.actions.createRoom(this.state.room)
-    this.resetRoom()
+    this.props.actions.addRoom(this.state.room)
+      .then(_ => {
+        this.resetRoom()
+        this.props.history.push('/')
+      })
     event.preventDefault()
   }
 

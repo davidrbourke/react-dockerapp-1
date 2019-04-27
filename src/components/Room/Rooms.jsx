@@ -4,7 +4,6 @@ import * as roomActions from '../../redux/actions/roomActions'
 import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import RoomList from './RoomList'
-import AddRoom from './AddRoom'
 
 class Rooms extends Component {
   componentDidMount () {
@@ -19,7 +18,6 @@ class Rooms extends Component {
       <div>
         <h2>Rooms</h2>
         <RoomList rooms={this.props.rooms} />
-        <AddRoom />
       </div>
     )
   }

@@ -14,6 +14,46 @@
       "id": 3,
       "name": "Room three",
       "size": "12"
+    },
+    {
+      "name": "tesat",
+      "size": "test",
+      "id": 4
+    },
+    {
+      "name": "dsafd",
+      "size": "dsfdsf",
+      "id": 5
+    },
+    {
+      "name": "",
+      "size": "",
+      "id": 6
+    },
+    {
+      "name": "test",
+      "size": "sdaf",
+      "id": 7
+    },
+    {
+      "name": "test",
+      "size": "dd",
+      "id": 8
+    },
+    {
+      "name": "Something",
+      "size": "7",
+      "id": 9
+    },
+    {
+      "name": "dsfdsfsdf",
+      "size": "dsf",
+      "id": 10
+    },
+    {
+      "name": "another",
+      "size": "1",
+      "id": 11
     }
   ]
 }
