@@ -1,14 +1,17 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import * as roomActions from './../../redux/actions/roomActions'
-import PropTypes from 'prop-types'
+import { bindActionCreators } from 'redux'
+import * as roomActions from '../../redux/actions/roomActions'
 
-class AddRoom extends React.Component {
+class AddRoom extends Component {
 
-  state = {
-    room: {
-      name: '',
-      size: ''
+  constructor (props) {
+    super(props)
+    this.state = {
+      room: {
+        name: '',
+        size: ''
+      }
     }
   }
 
@@ -18,37 +21,48 @@ class AddRoom extends React.Component {
   }
 
   handleSubmit = (event) => {
-    this.props.dispatch(roomActions.createRoom(this.state.room))
+    this.props.actions.createRoom(this.state.room)
+    this.resetRoom()
     event.preventDefault()
   }
 
-  render() {
+  resetRoom = () => {
+    this.setState({room: {
+      name: '',
+      size: ''
+    }})
+  }
+
+  render () {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <h2>Rooms</h2>
-        <h3>Add Room</h3>
-        <div>
-          <input type="text" name="name" onChange={this.handleChange} value={this.state.room.name} />
-          <input type="text" name="size" onChange={this.handleChange} value={this.state.room.size} />
-        </div>
-        <input type="submit" value="Submit" />
-        { this.props.rooms.map(room => (
-          <div key={room.name}>{room.name}, {room.size}</div>
-        ))}
-      </form>
+      <div className='row'>
+        <form onSubmit={this.handleSubmit}>
+          <h3>Add a new room</h3>
+          <div className='row'>
+            <div className='input-field'>
+              <input id='name' type='text' name='name' onChange={this.handleChange} value={this.state.room.name} />
+              <label for='name'>Room name</label>
+            </div>
+          </div>
+          <div className='row'>
+            <div className='input-field'>
+              <input id='size' type='text' name='size' onChange={this.handleChange} value={this.state.room.size} />
+              <label for='size'>Room capacity</label>
+            </div>
+          </div>
+          <input type='submit' value='Add' className='btn' />
+        </form>
+      </div>
     )
   }
 }
 
-AddRoom.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  rooms: PropTypes.array.isRequired
-}
+function mapStateToProps (state) {}
 
-function mapStateToProps(state) {
+function mapDispatchToProps (dispatch) {
   return {
-    rooms: state.rooms
+    actions: bindActionCreators(roomActions, dispatch)
   }
 }
 
-export default connect(mapStateToProps)(AddRoom)
+export default connect(mapStateToProps, mapDispatchToProps)(AddRoom)

@@ -1,15 +1,17 @@
-import React, { Component } from 'react';
-import './App.css';
-import AddRoom from './components/Room/AddRoom'
+import 'materialize-css/dist/css/materialize.min.css'
+import M from 'materialize-css'
+import React, { Component } from 'react'
+import './App.css'
+import Rooms from './components/Room/Rooms'
 
 class App extends Component {
-  render() {
+  render () {
     return (
-      <div className="App">
-        <AddRoom></AddRoom>
+      <div className='App'>
+        <Rooms />
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App

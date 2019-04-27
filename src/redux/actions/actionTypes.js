@@ -1,0 +1,2 @@
+export const CREATE_ROOM = 'CREATE_ROOM'
+export const LOAD_ROOMS_SUCCESS = 'LOAD_ROOMS_SUCCESS'
