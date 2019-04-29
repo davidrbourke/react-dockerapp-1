@@ -1,63 +1,61 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as roomActions from '../../redux/actions/roomActions'
+import PropType from 'prop-types'
 
-class AddRoom extends Component {
+function AddRoom ({ history, actions }) {
+  const [room, setRoom] = useState({
+    name: '',
+    size: ''
+  })
 
-  constructor (props) {
-    super(props)
-    this.state = {
-      room: {
-        name: '',
-        size: ''
-      }
-    }
+  const handleChange = (event) => {
+    const roomClone = { ...room, [event.target.name]: event.target.value }
+    setRoom(roomClone)
   }
 
-  handleChange = (event) => {
-    const room = { ...this.state.room, [event.target.name]: event.target.value }
-    this.setState({ room })
-  }
-
-  handleSubmit = (event) => {
-    this.props.actions.addRoom(this.state.room)
+  const handleSubmit = (event) => {
+    actions.addRoom(room)
       .then(_ => {
-        this.resetRoom()
-        this.props.history.push('/')
+        resetRoom()
+        history.push('/')
       })
     event.preventDefault()
   }
 
-  resetRoom = () => {
-    this.setState({room: {
+  const resetRoom = () => {
+    setRoom({
       name: '',
       size: ''
-    }})
+    })
   }
 
-  render () {
-    return (
-      <div className='row'>
-        <form onSubmit={this.handleSubmit}>
-          <h3>Add a new room</h3>
-          <div className='row'>
-            <div className='input-field'>
-              <input id='name' type='text' name='name' onChange={this.handleChange} value={this.state.room.name} />
-              <label htmlFor='name'>Room name</label>
-            </div>
+  return (
+    <div className='row'>
+      <form onSubmit={handleSubmit}>
+        <h3>Add a new room</h3>
+        <div className='row'>
+          <div className='input-field'>
+            <input id='name' type='text' name='name' onChange={handleChange} value={room.name} />
+            <label htmlFor='name'>Room name</label>
           </div>
-          <div className='row'>
-            <div className='input-field'>
-              <input id='size' type='text' name='size' onChange={this.handleChange} value={this.state.room.size} />
-              <label htmlFor='size'>Room capacity</label>
-            </div>
+        </div>
+        <div className='row'>
+          <div className='input-field'>
+            <input id='size' type='text' name='size' onChange={handleChange} value={room.size} />
+            <label htmlFor='size'>Room capacity</label>
           </div>
-          <input type='submit' value='Add' className='btn' />
-        </form>
-      </div>
-    )
-  }
+        </div>
+        <input type='submit' value='Add' className='btn' />
+      </form>
+    </div>
+  )
+}
+
+AddRoom.propTypes = {
+  history: PropType.object.isRequired,
+  actions: PropType.object.isRequired
 }
 
 function mapStateToProps (state) {
